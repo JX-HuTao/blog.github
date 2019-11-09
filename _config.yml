@@ -268,11 +268,11 @@ post:
       src: /ht.github.io/public/image/alipay.jpg
 
 valine:
-  enable: false
+  enable: true
   autoloader: /ht.github.io/public/js/valine.js
   src: /ht.github.io/public/js/valine.min.js
-  appId: iCHJpGom6WX5LkzaBYVFKfVa-gzGzoHsz
-  appKey: jQWkHh1AuIsP9uUX4BKfKC3D
+  appId: 9hABRddSuEkTgqLrt1VSK5B1-gzGzoHsz
+  appKey: NJ7RwmgrxsF7KDzlqU7YewlL
   notify: true # 评论回复邮件提醒
   verify: true # 验证码服务
   avatar: identicon
