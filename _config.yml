@@ -28,46 +28,46 @@ head: # 删改前确定知道自己在做什么
     value: content-type
   - key: content
     value: 'text/html; charset=utf-8'
-- tag: meta # google站点验证
-  var:
-  - key: name
-    value: google-site-verification
-  - key: content
-    value: YIKi1rBnyUaS-DMYiluseI5kZzTwjCkTFmKkSkMZDJk
-- tag: meta # baidu站点验证
-  var:
-  - key: name
-    value: baidu-site-verification
-  - key: content
-    value: bEFDJ1LvXb
+# - tag: meta # google站点验证
+#   var:
+#   - key: name
+#     value: google-site-verification
+#   - key: content
+#     value: YIKi1rBnyUaS-DMYiluseI5kZzTwjCkTFmKkSkMZDJk
+# - tag: meta # baidu站点验证
+#   var:
+#   - key: name
+#     value: baidu-site-verification
+#   - key: content
+#     value: bEFDJ1LvXb
 - tag: meta # yandex站点验证
   var:
   - key: name
     value: yandex-verification
   - key: content
     value: 52253e02830b443c
-- tag: link
-  var:
-  - key: rel
-    value: profile
-  - key: href
-    value: //gmpg.org/xfn/11
-- tag: link # rss
-  var:
-  - key: rel
-    value: alternate
-  - key: href
-    value: /atom.xml
-  - key: title
-    value: RSS
-  - key: type
-    value: application/rss+xml
+# - tag: link
+#   var:
+#   - key: rel
+#     value: profile
+#   - key: href
+#     value: //gmpg.org/xfn/11
+# - tag: link # rss
+#   var:
+#   - key: rel
+#     value: alternate
+#   - key: href
+#     value: /atom.xml
+#   - key: title
+#     value: RSS
+#   - key: type
+#     value: application/rss+xml
 - tag: link # 网站大图标，我偷懒直接用gravatar了，也可以存在/public里面
   var:
   - key: rel
     value: apple-touch-icon-precomposed
   - key: href
-    value: /ht.github.io/public/avatar-l.jpg
+    value: /ht.github.io/public/image/avatar-l.jpg
 - tag: link # 小图标，同上
   var:
   - key: rel
@@ -174,7 +174,7 @@ PrismJS: # 代码高亮插件，可以在https://prismjs.com/download.html自己
 sidebar:
   avatar: # 侧边栏显示的头像
     enable: true
-    img: /ht.github.io/public/avatar-l.jpg # 头像的地址
+    img: /ht.github.io/public/image/avatar-l.jpg # 头像的地址
     info: <br/>java开发<br/>喜欢看动漫<br/>日常发呆 # 头像背后的信息
   description: '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=324376&auto=1&height=66"></iframe>'
   social:
@@ -186,6 +186,12 @@ sidebar:
   - title: github
     href: //github.com/JX-HuTao
     class: 'fab fa-github fa-fw'
+  - title:  # blank
+    class: ''
+  - title:  # blank
+    class: ''
+  - title:  # blank
+    class: ''
   nav:
   - title: '<i class="fas fa-home fa-fw"></i> 首页'
     href: /ht.github.io
