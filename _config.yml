@@ -40,28 +40,28 @@ head: # 删改前确定知道自己在做什么
 #     value: baidu-site-verification
 #   - key: content
 #     value: bEFDJ1LvXb
-- tag: meta # yandex站点验证
+# - tag: meta # yandex站点验证
+#   var:
+#   - key: name
+#     value: yandex-verification
+#   - key: content
+#     value: 52253e02830b443c
+- tag: link
   var:
-  - key: name
-    value: yandex-verification
-  - key: content
-    value: 52253e02830b443c
-# - tag: link
-#   var:
-#   - key: rel
-#     value: profile
-#   - key: href
-#     value: //gmpg.org/xfn/11
-# - tag: link # rss
-#   var:
-#   - key: rel
-#     value: alternate
-#   - key: href
-#     value: /atom.xml
-#   - key: title
-#     value: RSS
-#   - key: type
-#     value: application/rss+xml
+  - key: rel
+    value: profile
+  - key: href
+    value: //gmpg.org/xfn/11
+- tag: link # rss
+  var:
+  - key: rel
+    value: alternate
+  - key: href
+    value: /ht.github.io/atom.xml
+  - key: title
+    value: RSS
+  - key: type
+    value: application/rss+xml
 - tag: link # 网站大图标，我偷懒直接用gravatar了，也可以存在/public里面
   var:
   - key: rel
@@ -186,12 +186,6 @@ sidebar:
   - title: github
     href: //github.com/JX-HuTao
     class: 'fab fa-github fa-fw'
-  - title:  # blank
-    class: ''
-  - title:  # blank
-    class: ''
-  - title:  # blank
-    class: ''
   nav:
   - title: '<i class="fas fa-home fa-fw"></i> 首页'
     href: /ht.github.io
@@ -232,7 +226,7 @@ sidebar:
   run_time:
     enable: true
     src: /ht.github.io/public/js/run_time.js
-    start_time: '10/04/2017 11:03:56' # 这是我第一篇CSDN博客的时间
+    start_time: '09/11/2019 12:00:00'
     alert: <i class="fas fa-cog fa-spin fa-fw"></i>
     day: 天
     hour: 时
