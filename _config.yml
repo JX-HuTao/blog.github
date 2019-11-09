@@ -268,7 +268,7 @@ post:
       src: /ht.github.io/public/image/alipay.jpg
 
 valine:
-  enable: true
+  enable: false
   autoloader: /ht.github.io/public/js/valine.js
   src: /ht.github.io/public/js/valine.min.js
   appId: iCHJpGom6WX5LkzaBYVFKfVa-gzGzoHsz
