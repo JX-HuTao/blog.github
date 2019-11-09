@@ -1,0 +1,21 @@
+---
+title: SSH key
+categories: [SSH]
+abbrlink: true
+date: 2019年11月09日 15时37分32秒
+---
+[Overview](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+# 检查SSH key是否已存在
+```text
+1. Open Git Bash Or Terminal
+2. 运行命令: ls -al ~/.ssh
+3. 若不存在秘钥对则执行生成操作
+```
+# 生成SSH Key
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+# 测试SSH连接
+```bash
+ssh -T git@github.com
+```
