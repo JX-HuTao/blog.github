@@ -176,7 +176,7 @@ sidebar:
     enable: true
     img: /ht.github.io/public/image/avatar-l.jpg # 头像的地址
     info: <br/>java开发<br/>喜欢看动漫<br/>日常发呆 # 头像背后的信息
-  description: '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=324376&auto=1&height=66"></iframe>'
+  description: '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=324376&auto=0&height=66"></iframe>'
   social:
   - title: 2239344753@qq.com # email
     href: mailto:2239344753@qq.com
@@ -271,8 +271,8 @@ valine:
   enable: true
   autoloader: /ht.github.io/public/js/valine.js
   src: /ht.github.io/public/js/valine.min.js
-  appId: iCHJpGom6WX5LkzaBYVFKfVa-gzGzoHsz
-  appKey: jQWkHh1AuIsP9uUX4BKfKC3D
+  appId: 9hABRddSuEkTgqLrt1VSK5B1-gzGzoHsz
+  appKey: NJ7RwmgrxsF7KDzlqU7YewlL
   notify: true # 评论回复邮件提醒
   verify: true # 验证码服务
   avatar: identicon
