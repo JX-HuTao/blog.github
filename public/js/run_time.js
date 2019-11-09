@@ -21,6 +21,8 @@ function run_time() {
   e_minsold = (e_hrsold - hrsold) * 60;
   minsold = setzero(Math.floor((e_hrsold - hrsold) * 60));
   seconds = setzero(Math.floor((e_minsold - minsold) * 60));
-  document.getElementById('run_time').innerHTML = daysold + "{{ site.sidebar.run_time.day }}" + hrsold + "{{ site.sidebar.run_time.hour }}" + minsold + "{{ site.sidebar.run_time.minute }}" + seconds + "{{ site.sidebar.run_time.second }}";
+  if(document.getElementById('run_time')) {
+    document.getElementById('run_time').innerHTML = daysold + "{{ site.sidebar.run_time.day }}" + hrsold + "{{ site.sidebar.run_time.hour }}" + minsold + "{{ site.sidebar.run_time.minute }}" + seconds + "{{ site.sidebar.run_time.second }}";
+  }
 }
 run_time();
