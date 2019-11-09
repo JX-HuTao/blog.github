@@ -226,7 +226,7 @@ sidebar:
   run_time:
     enable: true
     src: /ht.github.io/public/js/run_time.js
-    start_time: '09/11/2019 12:00:00'
+    start_time: '11/09/2019 00:00:00'
     alert: <i class="fas fa-cog fa-spin fa-fw"></i>
     day: 天
     hour: 时
