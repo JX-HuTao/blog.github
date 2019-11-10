@@ -16,7 +16,7 @@ title: 胡涛的博客
 
 {% endfor %}
 
-- [更多…](/archive)
+- [更多…](/ht.github.io/archive)
 
 {% for tag in site.index.showtag %}
 
