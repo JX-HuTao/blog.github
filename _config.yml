@@ -2,11 +2,11 @@ markdown: kramdown
 kramdown:
   input: GFM # Github Flavored Markdown
   math_engine: katex # 防止行间公式渲染错误
-permalink: /ht.github.io/posts/:categories/:title # 博文目录
+permalink: /posts/:categories/:title # 博文目录
 baseurl: "" # 假如你的博客是建在某个目录下的，请在这里加上目录名，并且下面配置的所有链接里的`/public`前也要加，即`/your_baseurl/public`。这一项结尾不要有'/'
 
 title: hu-tao
-url: https://jx-hutao.github.io/ht.github.io/
+url: http://blog.hellobike.tk/
 author: HuTao
 
 head: # 删改前确定知道自己在做什么
@@ -57,7 +57,7 @@ head: # 删改前确定知道自己在做什么
   - key: rel
     value: alternate
   - key: href
-    value: /ht.github.io/atom.xml
+    value: /atom.xml
   - key: title
     value: RSS
   - key: type
@@ -67,37 +67,37 @@ head: # 删改前确定知道自己在做什么
   - key: rel
     value: apple-touch-icon-precomposed
   - key: href
-    value: /ht.github.io/public/image/avatar-l.jpg
+    value: /public/image/avatar-l.jpg
 - tag: link # 小图标，同上
   var:
   - key: rel
     value: 'shortcut icon'
   - key: href
-    value: /ht.github.io/public/image/avatar-l.jpg
+    value: /public/image/avatar-l.jpg
 - tag: link # 下面是博客的css，有些插件的css是单独在插件里引用的，假如需要自己的css可以仿照去加在后面。无脑cdn加速了。
   var:
   - key: rel
     value: stylesheet
   - key: href
-    value: /ht.github.io/public/css/poole.css # 用cdn加速会出问题，暂时不知道为什么
+    value: /public/css/poole.css # 用cdn加速会出问题，暂时不知道为什么
 - tag: link
   var:
   - key: rel
     value: stylesheet
   - key: href
-    value: /ht.github.io/public/css/syntax.css
+    value: /public/css/syntax.css
 - tag: link
   var:
   - key: rel
     value: stylesheet
   - key: href
-    value: /ht.github.io/public/css/lanyon.css
+    value: /public/css/lanyon.css
 - tag: link
   var:
   - key: rel
     value: stylesheet
   - key: href
-    value: /ht.github.io/public/css/wu-kan.css
+    value: /public/css/wu-kan.css
 - tag: link
   var:
   - key: rel
@@ -122,10 +122,10 @@ script: # 需要在正文后调用的脚本或者插件的autoloader
     value: //cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js # live2d
 - var:
   - key: src
-    value: /ht.github.io/public/js/prism.js
+    value: /public/js/prism.js
 - var:
   - key: src
-    value: /ht.github.io/public/js/mermaid.js
+    value: /public/js/mermaid.js
   - key: js
     value: //cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
   - key: stylesheet
@@ -137,7 +137,7 @@ script: # 需要在正文后调用的脚本或者插件的autoloader
 #    value: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 - var:
   - key: src
-    value: /ht.github.io/public/js/katex.js
+    value: /public/js/katex.js
   - key: js
     value: //cdn.jsdelivr.net/npm/katex/dist/katex.min.js
   - key: auto_render
@@ -148,7 +148,7 @@ script: # 需要在正文后调用的脚本或者插件的autoloader
     value: true
 - var:
   - key: src
-    value: /ht.github.io/public/js/baidu_push.js
+    value: /public/js/baidu_push.js
 
 PrismJS: # 代码高亮插件，可以在https://prismjs.com/download.html自己定制，我这里只导入了三个自己喜欢的插件。
   enable: true
@@ -174,7 +174,7 @@ PrismJS: # 代码高亮插件，可以在https://prismjs.com/download.html自己
 sidebar:
   avatar: # 侧边栏显示的头像
     enable: true
-    img: /ht.github.io/public/image/avatar-l.jpg # 头像的地址
+    img: /public/image/avatar-l.jpg # 头像的地址
     info: <br/>java开发<br/>喜欢看动漫<br/>日常发呆 # 头像背后的信息
   description: '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=324376&auto=0&height=66"></iframe>'
   social:
@@ -188,25 +188,25 @@ sidebar:
     class: 'fab fa-github fa-fw'
   nav:
   - title: '<i class="fas fa-home fa-fw"></i> 首页'
-    href: /ht.github.io
+    href: /
   - title: '<i class="fab fa-readme fa-fw"></i> 关于'
-    href: /ht.github.io/about
+    href: /about
   - title: '<i class="fas fa-comments fa-fw"></i> 留言'
-    href: /ht.github.io/comments
+    href: /comments
   - title: '<i class="fas fa-tags fa-fw"></i> 标签'
-    href: /ht.github.io/tags
+    href: /tags
   - title: '<i class="fas fa-archive fa-fw"></i> 归档'
-    href: /ht.github.io/archive
+    href: /archive
   simple_jekyll_search:
     enable: true
-    autoloader: /ht.github.io/public/simple-jekyll-search/autoloader.js
-    stylesheet: /ht.github.io/public/simple-jekyll-search/search_box.css
+    autoloader: /public/simple-jekyll-search/autoloader.js
+    stylesheet: /public/simple-jekyll-search/search_box.css
     src: //cdn.jsdelivr.net/npm/simple-jekyll-search/dest/simple-jekyll-search.min.js
     placeholder: 搜索博文
-    json: /ht.github.io/public/simple-jekyll-search/search.json
+    json: /public/simple-jekyll-search/search.json
   jekyll_table_of_contents:
     enable: true
-    autoloader: /ht.github.io/public/js/jekyll_table_of_contents.js
+    autoloader: /public/js/jekyll_table_of_contents.js
     src: //cdn.jsdelivr.net/gh/ghiculescu/jekyll-table-of-contents/toc.js
   busuanzi:
     enable: true
@@ -225,7 +225,7 @@ sidebar:
     alert: <i class="fas fa-user-edit fa-fw"></i>
   run_time:
     enable: true
-    src: /ht.github.io/public/js/run_time.js
+    src: /public/js/run_time.js
     start_time: '11/09/2019 00:00:00'
     alert: <i class="fas fa-cog fa-spin fa-fw"></i>
     day: 天
@@ -234,7 +234,7 @@ sidebar:
     second: 秒
   copyright:
     enable: true
-    text: '<script async defer src="https://buttons.github.io/buttons.js"></script><a class="github-button" aria-label="Star" href="https://github.com/JX-HuTao/ht.github.io" data-icon="octicon-star" data-show-count="true">Star</a>'
+    text: '<script async defer src="https://buttons.github.io/buttons.js"></script><a class="github-button" aria-label="Star" href="https://github.com/JX-HuTao" data-icon="octicon-star" data-show-count="true">Star</a>'
 
 index:
   showtag:
@@ -270,14 +270,14 @@ post:
     text: 如果我的博客帮助到你，可以请我喝一杯咖啡~
     img: # 万一真的有人打赏呢~
     - id: wechat
-      src: /ht.github.io/public/image/wechatpay.jpg
+      src: /public/image/wechatpay.jpg
     - id: alipay
-      src: /ht.github.io/public/image/alipay.jpg
+      src: /public/image/alipay.jpg
 
 valine:
   enable: true
-  autoloader: /ht.github.io/public/js/valine.js
-  src: /ht.github.io/public/js/valine.min.js
+  autoloader: /public/js/valine.js
+  src: /public/js/valine.min.js
   appId: iCHJpGom6WX5LkzaBYVFKfVa-gzGzoHsz
   appKey: jQWkHh1AuIsP9uUX4BKfKC3D
   notify: true # 评论回复邮件提醒
@@ -294,5 +294,5 @@ page404:
     enable: true
     src: //qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js
     charset: utf-8
-    homePageUrl: '/ht.github.io'
+    homePageUrl: ''
     homePageName: 回到我的主页
