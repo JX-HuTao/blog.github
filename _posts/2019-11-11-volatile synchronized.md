@@ -2,7 +2,7 @@
 title: volatile 和 synchronize
 categories: [java]
 tags: [多线程]
-date: 2019-11-09 15:37:32
+date: 2019-11-11 21:13:02
 ---
 **注** 摘自《Java 高并发编程详解: 多线程与架构设计》 机械工业出版社 汪文君著
 # 使用上的区别
