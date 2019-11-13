@@ -238,8 +238,8 @@ sidebar:
 
 index:
   showtag:
-  - 人生经验
   - 基础配置
+  - 多线程
 
 tags:
   - Java
