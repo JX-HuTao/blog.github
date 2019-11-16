@@ -2,7 +2,7 @@
 title: kebernetes 安装
 categories: [devops]
 tags: [运维]
-date: 2019-11-16 13:56:26
+date: 2019-11-16 17:58:26
 ---
 # 结构
 1. master:
@@ -18,6 +18,7 @@ date: 2019-11-16 13:56:26
     kube-proxy
     docker
     ```
+
 # 优化及常用工具安装
 ```bash
 systemctl stop firewalld
