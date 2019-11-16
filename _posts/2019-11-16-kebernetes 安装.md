@@ -5,20 +5,19 @@ tags: [运维]
 date: 2019-11-16 17:58:26
 ---
 # 结构
-1. master:
-    ```text
-    etcd
-    api-server
-    controllor-manager
-    scheduler
-    ```
-2. node
-    ```text
-    kubelet
-    kube-proxy
-    docker
-    ```
-
+master:
+```text
+etcd
+api-server
+controllor-manager
+scheduler
+```
+node
+```text
+kubelet
+kube-proxy
+docker
+```
 # 优化及常用工具安装
 ```bash
 systemctl stop firewalld
@@ -41,9 +40,6 @@ yum install -y net-tools vim lrzsz wget tree screen lsof tcpdump
 systemctl stop postfix
 systemctl disable postfix
 ```
-
-修改 /etc/hosts 文件（所有节点）
-
 # master 安装
 ```bash
 yum install -y etcd
