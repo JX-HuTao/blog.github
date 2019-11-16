@@ -1,6 +1,6 @@
 ---
 title: kebernetes 安装
-categories: [devops]]
+categories: [devops]
 tags: [运维]
 date: 2019-11-16 13:56:26
 ---
