@@ -1,6 +1,6 @@
 ---
 title: kebernetes 安装
-categories: [devops]]
+categories: [devops]
 tags: [运维]
 date: 2019-11-16 13:56:26
 ---
@@ -40,7 +40,9 @@ yum install -y net-tools vim lrzsz wget tree screen lsof tcpdump
 systemctl stop postfix
 systemctl disable postfix
 ```
+
 修改 /etc/hosts 文件（所有节点）
+
 # master 安装
 ```bash
 yum install -y etcd
