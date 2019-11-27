@@ -26,7 +26,7 @@ default boolean upgradeEncoding(String encodedPassword) {
 ```
 分别用于生成密码、校验密码、判断密码是否需要再次加密以获得更安全的密码，其中第三个方法较4.x.x 版本为新增方法，不考虑。以下开始讨论其中一个实现类 BCryptPasswordEncoder。
 # BCryptPasswordEncoder 分析
-BCryptPasswordEncoder 提供了 7 个构造方法，较4.x 版本主要增加参数 BCryptVersion，该参数是个枚举类，改值参与密码盐的生成。
+BCryptPasswordEncoder 提供了 7 个构造方法，较4.x 版本主要增加参数 BCryptVersion，该参数是个枚举类，参与密码盐的生成。
 
 该类的加密方法如下：
 ```java
@@ -77,7 +77,7 @@ public static String gensalt(String prefix, int log_rounds, SecureRandom random)
     return rs.toString();
 }
 ```
-该方法较简单，前置判断校验参数正确性，encode_base64 之前为拼接盐前缀，大致格式为“$2a$10$”，这些参数通过 $ 进行分割，分别表示version、strength；
+该方法较简单，前置判断校验参数正确性，encode_base64 之前为拼接盐前缀，大致格式为`$2a$10$`，这些参数通过 `$` 进行分割，分别表示version、strength；
 ```java
 static void encode_base64(byte d[], int len, StringBuilder rs)
         throws IllegalArgumentException {
@@ -120,3 +120,5 @@ len = 2，生成三个字符，分别为 b0 的高6 bit、b0 的低2 bit及b1 �
 len = 3，生成四个字符，三个byte 刚好24 bit，每个字符占6 bit；
 ```
 base64_code 是一个用final修饰长度为64 的char[], 由生成的盐可以反推 SecureRandom 生成的byte数组，反之亦可；
+# 密码生成
+待补充
