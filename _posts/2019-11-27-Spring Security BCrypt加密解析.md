@@ -121,4 +121,171 @@ len = 3，生成四个字符，三个byte 刚好24 bit，每个字符占6 bit；
 ```
 base64_code 是一个用final修饰长度为64 的char[], 由生成的盐可以反推 SecureRandom 生成的byte数组，反之亦可；
 # 密码生成
-待补充
+之前已经介绍了密文获取方式，密文主要由以下代码获取
+```java
+BCrypt.hashpw(rawPassword.toString(), salt);
+
+public static String hashpw(String password, String salt) {
+    byte passwordb[];
+
+    passwordb = password.getBytes(StandardCharsets.UTF_8);
+
+    return hashpw(passwordb, salt);
+}
+
+public static String hashpw(byte passwordb[], String salt) {
+    BCrypt B;
+    String real_salt;
+    byte saltb[], hashed[];
+    char minor = (char) 0;
+    int rounds, off;
+    StringBuilder rs = new StringBuilder();
+
+    if (salt == null) {
+        throw new IllegalArgumentException("salt cannot be null");
+    }
+
+    int saltLength = salt.length();
+
+    if (saltLength < 28) {
+        throw new IllegalArgumentException("Invalid salt");
+    }
+
+    /*
+     * 计算偏移量
+     * 若直接使用security提供的盐生成策略，则 off 必定为 4
+     */
+    if (salt.charAt(0) != '$' || salt.charAt(1) != '2')
+        throw new IllegalArgumentException ("Invalid salt version");
+    if (salt.charAt(2) == '$')
+        off = 3;
+    else {
+        minor = salt.charAt(2);
+        if ((minor != 'a' && minor != 'x' && minor != 'y' && minor != 'b')
+                || salt.charAt(3) != '$')
+            throw new IllegalArgumentException ("Invalid salt revision");
+        off = 4;
+    }
+
+    // Extract number of rounds
+    if (salt.charAt(off + 2) > '$')
+        throw new IllegalArgumentException ("Missing salt rounds");
+
+    if (off == 4 && saltLength < 29) {
+        throw new IllegalArgumentException("Invalid salt");
+    }
+    rounds = Integer.parseInt(salt.substring(off, off + 2));
+
+    // base64 解码，获取生成盐的 byte 数组
+    real_salt = salt.substring(off + 3, off + 25);
+    saltb = decode_base64(real_salt, BCRYPT_SALT_LEN);
+
+    // 若直接使用security提供的盐生成策略, 则该逻辑必定为真
+    if (minor >= 'a') // add null terminator
+        passwordb = Arrays.copyOf(passwordb, passwordb.length + 1);
+
+    B = new BCrypt();
+    hashed = B.crypt_raw(passwordb, saltb, rounds, minor == 'x', minor == 'a' ? 0x10000 : 0);
+
+    // 组装密文
+    rs.append("$2");
+    if (minor >= 'a')
+        rs.append(minor);
+    rs.append("$");
+    if (rounds < 10)
+        rs.append("0");
+    rs.append(rounds);
+    rs.append("$");
+    encode_base64(saltb, saltb.length, rs); // 密文组装部分执行到此为 密码盐
+    encode_base64(hashed, bf_crypt_ciphertext.length * 4 - 1, rs);
+    return rs.toString();
+}
+```
+上述代码若不追究 hashed 计算方式，只观察最后一段代码，前置部分与密码盐生成逻辑一样，若进行对比也可以发现密文首部与密码盐相同，只是由于盐由随机数生成，使得同一密码生成的密文不同。
+
+密文尾部由 hashed 进行base64加密获得，其中 bf_crypt_ciphertext 是final修饰的byte 数组，长度为6，之前讨论密码盐生成时已经探讨该生成策略，可知最后 31 位字符为密码密文，因此可以通过使用相同密码尝试解析不同密文。
+
+接下来开始研究 hashed 生成原理，其源码如下
+```java
+private byte[] crypt_raw(byte password[], byte salt[], int log_rounds,
+                        boolean sign_ext_bug, int safety) {
+    int rounds, i, j;
+    int cdata[] =  bf_crypt_ciphertext.clone();
+    int clen = cdata.length;
+    byte ret[];
+
+    if (log_rounds < 4 || log_rounds > 31)
+        throw new IllegalArgumentException ("Bad number of rounds");
+    rounds = 1 << log_rounds;
+    if (salt.length != BCRYPT_SALT_LEN)
+        throw new IllegalArgumentException ("Bad salt length");
+
+    init_key();
+    ekskey(salt, password, sign_ext_bug, safety);
+    for (i = 0; i < rounds; i++) {
+        key(password, sign_ext_bug, safety);
+        key(salt, false, safety);
+    }
+
+    for (i = 0; i < 64; i++) {
+        for (j = 0; j < (clen >> 1); j++)
+            encipher(cdata, j << 1);
+    }
+
+    ret = new byte[clen * 4];
+    for (i = 0, j = 0; i < clen; i++) {
+        ret[j++] = (byte) ((cdata[i] >> 24) & 0xff);
+        ret[j++] = (byte) ((cdata[i] >> 16) & 0xff);
+        ret[j++] = (byte) ((cdata[i] >> 8) & 0xff);
+        ret[j++] = (byte) (cdata[i] & 0xff);
+    }
+    return ret;
+}
+```
+
+`init_key`部分，该部分并未执行特殊操作，准备运算数据。
+```java
+private int P[];
+private int S[];
+
+private void init_key() {
+    P = P_orig.clone(); // P_orig 为长度 16 的数组
+    S = S_orig.clone(); // S_orig 为长度 1024 的数组
+}
+```
+
+`ekskey`部分，该部分功能较复杂，以下选取部分片段进行研究
+```java
+for (i = 0; i < plen; i++) {
+    int words[] = streamtowords(key, koffp, signp);
+    diff |= words[0] ^ words[1];
+    P[i] = P[i] ^ words[sign_ext_bug ? 1 : 0];
+}
+```
+
+```java
+private static int[] streamtowords(byte data[], int offp[], int signp[]) {
+    int i;
+    int words[] = { 0, 0 };
+    int off = offp[0];
+    int sign = signp[0];
+
+    for (i = 0; i < 4; i++) {
+        words[0] = (words[0] << 8) | (data[off] & 0xff);
+        words[1] = (words[1] << 8) | (int) data[off]; // sign extension bug
+        if (i > 0) sign |= words[1] & 0x80;
+        off = (off + 1) % data.length;
+    }
+
+    offp[0] = off;
+    signp[0] = sign;
+    return words;
+}
+```
+`streamtowords`方法归纳结果如下：
+1. words[0] 由 4 个 byte 组成 ；
+2. words[1] 的值由最后一位负数及之后的byte组成，若不存在负数，则与 words[0] 相等；
+3. off 递增数字，`streamtowords`执行一次，该值加 4，即 offp[0] 加4；
+4. sign 若其值等于`0x80`，则 data 必定包含负数，不一定当前取值范围存在负数；
+
+未完待续...
